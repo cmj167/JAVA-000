@@ -70,13 +70,18 @@ CREATE TABLE `goods_info` (
 DROP TABLE IF EXISTS `order_info`;
 CREATE TABLE `order_info` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '订单编号',
-  `goods_id` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品id',
+  `user_id` int NOT NULL COMMENT '用户id',
+  `goods_id` int NOT NULL COMMENT '商品id',
   `amount` int NOT NULL COMMENT '商品数量',
   `status` int NOT NULL COMMENT '订单状态：0：未支付  1：待发货 2：已发货 3：待评价 4：已完成',
   `logistics_id` int NOT NULL COMMENT '物流id',
   PRIMARY KEY (`id`),
   KEY `FK_LOGISTICS` (`logistics_id`),
-  CONSTRAINT `FK_LOGISTICS` FOREIGN KEY (`logistics_id`) REFERENCES `logistics_info` (`id`)
+  KEY `FK_USER_id` (`user_id`),
+  KEY `FK_GOODs_id` (`goods_id`),
+  CONSTRAINT `FK_GOODs_id` FOREIGN KEY (`goods_id`) REFERENCES `goods_info` (`id`),
+  CONSTRAINT `FK_LOGISTICS` FOREIGN KEY (`logistics_id`) REFERENCES `logistics_info` (`id`),
+  CONSTRAINT `FK_USER_id` FOREIGN KEY (`user_id`) REFERENCES `user_info` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
 
 
