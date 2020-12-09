@@ -17,12 +17,8 @@ public class OrderDao {
     private Logger logger = LoggerFactory.getLogger(OrderDao.class);
 
     @Resource
-    private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
-    public void init() {
-        jdbcTemplate  = new JdbcTemplate(dataSource);
-    }
     /**
      * 入订单表
      */

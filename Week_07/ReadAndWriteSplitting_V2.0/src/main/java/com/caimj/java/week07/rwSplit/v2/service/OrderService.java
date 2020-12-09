@@ -18,7 +18,6 @@ public class OrderService {
     private OrderDao orderDao;
 
     public void addOrder() {
-        orderDao.init();
         orderDao.addOrder();
     }
 
